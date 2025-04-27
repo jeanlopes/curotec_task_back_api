@@ -1,4 +1,7 @@
 using CurotecTaskBackApi;
+using CurotecTaskBackApi.Handlers;
+using CurotecTaskBackApi.Middlewares;
+using CurotecTaskBackApi.Queries;
 using CurotecTaskBackApi.Repositories;
 using CurotecTaskBackApi.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +19,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
+// Register CQRS handlers and queries
+builder.Services.AddScoped<CreateTaskHandler>();
+builder.Services.AddScoped<UpdateTaskHandler>();
+builder.Services.AddScoped<DeleteTaskHandler>();
+builder.Services.AddScoped<TaskQueries>();
+
 // Configure DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -29,6 +38,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Add a middleware for global error handling
+app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

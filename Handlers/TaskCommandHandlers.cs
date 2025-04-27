@@ -1,68 +1,61 @@
-using System.Threading.Tasks;
 using CurotecTaskBackApi.Commands;
-using CurotecTaskBackApi.Repositories;
-using CurotecTaskBackApi.Entities;
+using CurotecTaskBackApi.Services;
+using TaskEntity = CurotecTaskBackApi.Entities.Task;
 
 namespace CurotecTaskBackApi.Handlers
 {
     public class CreateTaskHandler
     {
-        private readonly ITaskRepository _taskRepository;
+        private readonly ITaskService _service;
 
-        public CreateTaskHandler(ITaskRepository taskRepository)
+        public CreateTaskHandler(ITaskService service)
         {
-            _taskRepository = taskRepository;
+            _service = service;
         }
 
-        public async System.Threading.Tasks.Task Handle(CreateTaskCommand command)
+        public async Task Handle(CreateTaskCommand command)
         {
-            var task = new CurotecTaskBackApi.Entities.Task
-            {
-                Title = command.Title,
-                Description = command.Description,
-                Status = command.Status,
-                CreatedDate = command.CreatedDate
-            };
+            var task = new TaskEntity { Name = command.Name, Description = command.Description };
 
-            await _taskRepository.AddTaskAsync(task);
+            var createdTask = await _service.AddTaskAsync(task);
+            command.Id = createdTask.Id;
         }
     }
 
     public class UpdateTaskHandler
     {
-        private readonly ITaskRepository _taskRepository;
+        private readonly ITaskService _service;
 
-        public UpdateTaskHandler(ITaskRepository taskRepository)
+        public UpdateTaskHandler(ITaskService service)
         {
-            _taskRepository = taskRepository;
+            _service = service;
         }
 
-        public async System.Threading.Tasks.Task Handle(UpdateTaskCommand command)
+        public async Task Handle(UpdateTaskCommand command)
         {
-            var task = new CurotecTaskBackApi.Entities.Task
+            var task = new TaskEntity
             {
                 Id = command.Id,
-                Title = command.Title,
-                Description = command.Description,
-                Status = command.Status
+                Name = command.Name,
+                Description = command.Description
             };
 
-            await _taskRepository.UpdateTaskAsync(task);
+            await _service.UpdateTaskAsync(task);
         }
     }
 
     public class DeleteTaskHandler
     {
-        private readonly ITaskRepository _taskRepository;
+        private readonly ITaskService _service;
 
-        public DeleteTaskHandler(ITaskRepository taskRepository)
+        public DeleteTaskHandler(ITaskService service)
         {
-            _taskRepository = taskRepository;
+            _service = service;
         }
 
-        public async System.Threading.Tasks.Task Handle(DeleteTaskCommand command)
+        public async Task Handle(DeleteTaskCommand command)
         {
-            await _taskRepository.DeleteTaskAsync(command.Id);
+            await _service.DeleteTaskAsync(command.Id);
         }
     }
 }
