@@ -1,5 +1,5 @@
 using CurotecTaskBackApi.Commands;
-using CurotecTaskBackApi.Services;
+using Domain.Services;
 using Microsoft.Extensions.Logging;
 using TaskEntity = CurotecTaskBackApi.Entities.Task;
 

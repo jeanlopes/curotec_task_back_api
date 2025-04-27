@@ -1,8 +1,17 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "curotec_task_back_api", "curotec_task_back_api.csproj", "{37A7EA40-9C87-6A14-1907-CA3D12D520EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "0 - Api\Api.csproj", "{F3641507-BCFE-47DB-A9A1-1999E6271E91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "1 - Application\Application.csproj", "{464A1ED6-38BF-4392-AF82-D3A8DBE21DFC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting", "5 - CrossCutting\CrossCutting.csproj", "{D67499D9-191A-4300-B296-709A76553B66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "2 - Domain\Domain.csproj", "{BEFE7559-ADF8-4C50-8D87-E8E3B3D5BBED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "4 - Infra\Infra.csproj", "{C98AB0DB-8F6C-48EE-AFED-F7C070EBF8EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{37A7EA40-9C87-6A14-1907-CA3D12D520EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37A7EA40-9C87-6A14-1907-CA3D12D520EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37A7EA40-9C87-6A14-1907-CA3D12D520EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37A7EA40-9C87-6A14-1907-CA3D12D520EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3641507-BCFE-47DB-A9A1-1999E6271E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3641507-BCFE-47DB-A9A1-1999E6271E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3641507-BCFE-47DB-A9A1-1999E6271E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3641507-BCFE-47DB-A9A1-1999E6271E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{464A1ED6-38BF-4392-AF82-D3A8DBE21DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{464A1ED6-38BF-4392-AF82-D3A8DBE21DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{464A1ED6-38BF-4392-AF82-D3A8DBE21DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{464A1ED6-38BF-4392-AF82-D3A8DBE21DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D67499D9-191A-4300-B296-709A76553B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67499D9-191A-4300-B296-709A76553B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67499D9-191A-4300-B296-709A76553B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67499D9-191A-4300-B296-709A76553B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEFE7559-ADF8-4C50-8D87-E8E3B3D5BBED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEFE7559-ADF8-4C50-8D87-E8E3B3D5BBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEFE7559-ADF8-4C50-8D87-E8E3B3D5BBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEFE7559-ADF8-4C50-8D87-E8E3B3D5BBED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98AB0DB-8F6C-48EE-AFED-F7C070EBF8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98AB0DB-8F6C-48EE-AFED-F7C070EBF8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98AB0DB-8F6C-48EE-AFED-F7C070EBF8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98AB0DB-8F6C-48EE-AFED-F7C070EBF8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

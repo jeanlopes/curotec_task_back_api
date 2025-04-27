@@ -1,3 +1,4 @@
+using Api.Models;
 using CurotecTaskBackApi.Commands;
 using CurotecTaskBackApi.Handlers;
 using CurotecTaskBackApi.Queries;
@@ -28,14 +29,14 @@ namespace CurotecTaskBackApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Entities.Task>>> GetAllTasks()
+        public async Task<ActionResult<IEnumerable<TaskModel>>> GetAllTasks()
         {
             var tasks = await _taskQueries.GetAllTasksAsync();
             return Ok(tasks);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Entities.Task>> GetTaskById(int id)
+        public async Task<ActionResult<TaskModel>> GetTaskById(int id)
         {
             var task = await _taskQueries.GetTaskByIdAsync(id);
             if (task == null)

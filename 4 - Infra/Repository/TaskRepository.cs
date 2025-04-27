@@ -11,7 +11,7 @@ namespace CurotecTaskBackApi.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Entities.Task>> GetAllTasksAsync()
+        public async Task<IEnumerable<CurotecTaskBackApi.Entities.Task>> GetAllTasksAsync()
         {
             return await _context.Tasks.ToListAsync();
         }

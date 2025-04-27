@@ -1,9 +1,5 @@
 using CurotecTaskBackApi;
-using CurotecTaskBackApi.Handlers;
 using CurotecTaskBackApi.Middlewares;
-using CurotecTaskBackApi.Queries;
-using CurotecTaskBackApi.Repositories;
-using CurotecTaskBackApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,15 +11,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<ITaskService, TaskService>();
-
-// Register CQRS handlers and queries
-builder.Services.AddScoped<CreateTaskHandler>();
-builder.Services.AddScoped<UpdateTaskHandler>();
-builder.Services.AddScoped<DeleteTaskHandler>();
-builder.Services.AddScoped<TaskQueries>();
 
 // Configure DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>

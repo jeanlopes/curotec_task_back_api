@@ -21,4 +21,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\1 - Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\5 - CrossCutting\CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>

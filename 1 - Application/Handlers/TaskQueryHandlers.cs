@@ -1,4 +1,3 @@
-using CurotecTaskBackApi.Entities;
 using CurotecTaskBackApi.Queries;
 using CurotecTaskBackApi.Repositories;
 
