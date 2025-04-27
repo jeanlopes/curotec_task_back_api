@@ -20,4 +20,14 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\1 - Application\Application.csproj" />
+    <ProjectReference Include="..\..\2 - Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\4 - Infra\Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.18.2" />
+  </ItemGroup>
+
 </Project>
