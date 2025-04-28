@@ -1,4 +1,5 @@
 using CurotecTaskBackApi;
+using CurotecTaskBackApi.CrossCutting;
 using CurotecTaskBackApi.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +13,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
 // Configure DbContext
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn));
+
+// Add CORS configuration
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        }
+    );
+});
+
+// Register services from IoC
+IoC.RegisterServices(builder.Services);
 
 var app = builder.Build();
 
@@ -31,8 +47,21 @@ app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
+// Use CORS in the application
+app.UseCors("AllowAll");
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Add a redirect to Swagger UI when accessing the root URL
+app.MapGet(
+    "/",
+    context =>
+    {
+        context.Response.Redirect("/swagger");
+        return Task.CompletedTask;
+    }
+);
 
 app.Run();
