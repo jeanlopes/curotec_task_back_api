@@ -13,6 +13,13 @@ namespace CurotecTaskBackApi
         {
             base.OnModelCreating(modelBuilder);
 
+            // Configure Task entity
+            modelBuilder.Entity<Entities.Task>(entity =>
+            {
+                entity.HasKey(t => t.Id); // Set Id as Primary Key
+                entity.Property(t => t.Id).ValueGeneratedOnAdd(); // Set Id to auto-increment
+            });
+
             // Seed data
             modelBuilder
                 .Entity<Entities.Task>()

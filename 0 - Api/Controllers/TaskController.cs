@@ -1,6 +1,6 @@
-using Api.Models;
 using CurotecTaskBackApi.Commands;
 using CurotecTaskBackApi.Handlers;
+using CurotecTaskBackApi.Models;
 using CurotecTaskBackApi.Queries;
 using Microsoft.AspNetCore.Mvc;
 

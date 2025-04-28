@@ -1,4 +1,4 @@
-namespace Api.Models
+namespace CurotecTaskBackApi.Entities
 {
     public enum TaskStatus
     {

@@ -20,12 +20,22 @@ namespace CurotecTaskBackApi.Handlers
         {
             try
             {
-                var task = new TaskEntity { Name = command.Name, Description = command.Description };
+                var task = new TaskEntity
+                {
+                    Description = command.Description,
+                    CreatedDate = DateTime.UtcNow,
+                    IsCompleted = false,
+                    Status = (int)Entities.TaskStatus.Pending,
+                    Title = command.Title
+                };
 
                 var createdTask = await _service.AddTaskAsync(task);
                 command.Id = createdTask.Id;
 
-                _logger.LogInformation("Task created successfully with ID: {TaskId}", createdTask.Id);
+                _logger.LogInformation(
+                    "Task created successfully with ID: {TaskId}",
+                    createdTask.Id
+                );
             }
             catch (Exception ex)
             {
@@ -53,7 +63,8 @@ namespace CurotecTaskBackApi.Handlers
                 var task = new TaskEntity
                 {
                     Id = command.Id,
-                    Name = command.Name,
+                    Title = command.Title,
+                    Status = (int)command.Status,
                     Description = command.Description
                 };
 
@@ -63,7 +74,11 @@ namespace CurotecTaskBackApi.Handlers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while updating task with ID: {TaskId}", command.Id);
+                _logger.LogError(
+                    ex,
+                    "Error occurred while updating task with ID: {TaskId}",
+                    command.Id
+                );
                 throw;
             }
         }
@@ -90,7 +105,11 @@ namespace CurotecTaskBackApi.Handlers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while deleting task with ID: {TaskId}", command.Id);
+                _logger.LogError(
+                    ex,
+                    "Error occurred while deleting task with ID: {TaskId}",
+                    command.Id
+                );
                 throw;
             }
         }
