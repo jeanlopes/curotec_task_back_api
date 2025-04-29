@@ -1,5 +1,6 @@
 using CurotecTaskBackApi;
 using CurotecTaskBackApi.CrossCutting;
+using CurotecTaskBackApi.Infra;
 using CurotecTaskBackApi.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,13 @@ builder.Services.AddCors(options =>
 IoC.RegisterServices(builder.Services);
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+    DbInitializer.Seed(dbContext);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

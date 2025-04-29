@@ -25,13 +25,13 @@ public class TaskServiceTests
             new()
             {
                 Id = 1,
-                Name = "Task 1",
+                Title = "Task 1",
                 Description = "Description 1"
             },
             new()
             {
                 Id = 2,
-                Name = "Task 2",
+                Title = "Task 2",
                 Description = "Description 2"
             }
         };
@@ -42,7 +42,7 @@ public class TaskServiceTests
 
         // Assert
         Assert.Equal(2, result.Count());
-        Assert.Equal("Task 1", result.First().Name);
+        Assert.Equal("Task 1", result.First().Title);
     }
 
     [Fact]
@@ -52,7 +52,7 @@ public class TaskServiceTests
         var task = new CurotecTaskBackApi.Entities.Task
         {
             Id = 1,
-            Name = "New Task",
+            Title = "New Task",
             Description = "New Description"
         };
         _mockRepository.Setup(repo => repo.AddTaskAsync(task)).ReturnsAsync(task);
@@ -61,7 +61,7 @@ public class TaskServiceTests
         var result = await _taskService.AddTaskAsync(task);
 
         // Assert
-        Assert.Equal("New Task", result.Name);
+        Assert.Equal("New Task", result.Title);
         _mockRepository.Verify(repo => repo.AddTaskAsync(task), Times.Once);
     }
 }

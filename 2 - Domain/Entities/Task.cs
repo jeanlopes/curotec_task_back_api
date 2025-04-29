@@ -10,7 +10,6 @@ namespace CurotecTaskBackApi.Entities
         public string Description { get; set; } = string.Empty;
         public int Status { get; set; } = (int)TaskStatus.Pending;
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
-        public string Name { get; set; } = string.Empty;
         public bool IsCompleted { get; set; } = false;
 
         public Task() { }

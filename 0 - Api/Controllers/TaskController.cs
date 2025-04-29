@@ -49,6 +49,11 @@ namespace CurotecTaskBackApi.Controllers
         [HttpPost]
         public async Task<ActionResult> AddTask(CreateTaskCommand command)
         {
+            if (!TryValidateModel(command))
+            {
+                return BadRequest(ModelState);
+            }
+
             await _createTaskHandler.Handle(command);
             return CreatedAtAction(nameof(GetTaskById), new { id = command.Id }, command);
         }
@@ -59,6 +64,11 @@ namespace CurotecTaskBackApi.Controllers
             if (id != command.Id)
             {
                 return BadRequest();
+            }
+
+            if (!TryValidateModel(command))
+            {
+                return BadRequest(ModelState);
             }
 
             await _updateTaskHandler.Handle(command);

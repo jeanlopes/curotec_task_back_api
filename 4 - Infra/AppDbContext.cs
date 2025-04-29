@@ -27,9 +27,11 @@ namespace CurotecTaskBackApi
                     new Entities.Task
                     {
                         Id = 1,
-                        Name = "Test Task",
                         Description = "This is a test task.",
-                        IsCompleted = false
+                        IsCompleted = false,
+                        CreatedDate = DateTime.UtcNow,
+                        Status = (int)Entities.TaskStatus.Pending,
+                        Title = "Test Task Title"
                     }
                 );
         }
