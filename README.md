@@ -1,4 +1,4 @@
-# [Curotec Task Management Frontend](https://github.com/jeanlopes/curotec_task_front_app)
+### [Curotec Task Management Frontend](https://github.com/jeanlopes/curotec_task_front_app)
 FYI: In case we need I also put the frontend folder on the backend repository.
 
 # Curotec Task Management API
