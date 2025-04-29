@@ -9,6 +9,10 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
