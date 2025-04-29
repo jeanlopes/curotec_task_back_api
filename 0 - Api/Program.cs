@@ -3,6 +3,8 @@ using CurotecTaskBackApi.CrossCutting;
 using CurotecTaskBackApi.Infra;
 using CurotecTaskBackApi.Middlewares;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
+using CurotecTaskBackApi.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,9 @@ builder.Services.AddCors(options =>
         }
     );
 });
+
+// Add SignalR services
+builder.Services.AddSignalR();
 
 // Register services from IoC
 IoC.RegisterServices(builder.Services);
@@ -61,6 +66,9 @@ app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Map SignalR hubs
+app.MapHub<TaskHub>("/hub");
 
 // Add a redirect to Swagger UI when accessing the root URL
 app.MapGet(

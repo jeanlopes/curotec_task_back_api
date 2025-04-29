@@ -3,6 +3,8 @@ using CurotecTaskBackApi.Handlers;
 using CurotecTaskBackApi.Models;
 using CurotecTaskBackApi.Queries;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using CurotecTaskBackApi.Hubs;
 
 namespace CurotecTaskBackApi.Controllers
 {
@@ -14,18 +16,21 @@ namespace CurotecTaskBackApi.Controllers
         private readonly UpdateTaskHandler _updateTaskHandler;
         private readonly DeleteTaskHandler _deleteTaskHandler;
         private readonly TaskQueries _taskQueries;
+        private readonly IHubContext<TaskHub> _hubContext;
 
         public TaskController(
             CreateTaskHandler createTaskHandler,
             UpdateTaskHandler updateTaskHandler,
             DeleteTaskHandler deleteTaskHandler,
-            TaskQueries taskQueries
+            TaskQueries taskQueries,
+            IHubContext<TaskHub> hubContext
         )
         {
             _createTaskHandler = createTaskHandler;
             _updateTaskHandler = updateTaskHandler;
             _deleteTaskHandler = deleteTaskHandler;
             _taskQueries = taskQueries;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -55,6 +60,7 @@ namespace CurotecTaskBackApi.Controllers
             }
 
             await _createTaskHandler.Handle(command);
+            await _hubContext.Clients.All.SendAsync("TaskAdded", command);
             return CreatedAtAction(nameof(GetTaskById), new { id = command.Id }, command);
         }
 
@@ -72,6 +78,7 @@ namespace CurotecTaskBackApi.Controllers
             }
 
             await _updateTaskHandler.Handle(command);
+            await _hubContext.Clients.All.SendAsync("TaskUpdated", command);
             return NoContent();
         }
 
@@ -80,6 +87,7 @@ namespace CurotecTaskBackApi.Controllers
         {
             var command = new DeleteTaskCommand { Id = id };
             await _deleteTaskHandler.Handle(command);
+            await _hubContext.Clients.All.SendAsync("TaskDeleted", id);
             return NoContent();
         }
     }
