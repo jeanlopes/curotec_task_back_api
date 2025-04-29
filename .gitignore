@@ -1,0 +1,63 @@
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio working directory
+.vs/
+
+# Ignore Rider IDE files
+.idea/
+*.iml
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore compiled DLLs and executables
+*.dll
+*.exe
+*.pdb
+*.cache
+*.ilk
+*.idb
+*.lib
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+
+# Ignore NuGet packages
+*.nupkg
+
+# Ignore build artifacts
+*.builds
+*.csproj.nuget.dgspec.json
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+project.assets.json
+project.nuget.cache
+
+# Ignore EF Core migrations
+Migrations/
+
+# Ignore launch settings
+Properties/launchSettings.json
